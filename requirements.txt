@@ -1,0 +1,6 @@
+django
+psycopg2
+python-dotenv
+django-ratelimit
+djangorestframework
+djangorestframework-simplejwt
