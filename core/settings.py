@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import os
 import dotenv
+import datetime
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# JWT Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),  # Extend as needed (e.g., 60 minutes)
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=7),     # Extend as needed (e.g., 7 days)
+    'ROTATE_REFRESH_TOKENS': True,                            # Optional: rotates refresh tokens on use
+    'BLACKLIST_AFTER_ROTATION': True,                         # Optional: blacklist old refresh tokens
+    'ALGORITHM': 'HS256',                                     # Ensure you are using the correct algorithm
+    'SIGNING_KEY': os.getenv('JWT_SIGNING_KEY'),              # Replace with your actual secret key
+    'AUTH_HEADER_TYPES': ('Bearer',),                         # Ensure it matches your frontend headers
+}
+
+# Django Rate Limit configuration
+RATELIMIT_ENABLE = True
+RATELIMIT_VIEW = 'core.views.ratelimit_exceeded'
