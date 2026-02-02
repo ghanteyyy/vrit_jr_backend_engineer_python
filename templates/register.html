@@ -5,7 +5,7 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
 
-    <form action="" method="POST">
+    <form id="register-form" action="" method="POST">
         {% csrf_token %}
         <h1>Register</h1>
 
@@ -38,4 +38,6 @@
             <a href="/login">Login</a>
         </div>
     </form>
+
+    <script src="{% static 'js/register.js' %}" defer></script>
 {% endblock %}
