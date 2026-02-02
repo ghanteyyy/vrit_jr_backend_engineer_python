@@ -15,6 +15,7 @@ form {
     gap: 20px;
     justify-content: center;
     margin-bottom: 14px;
+    align-items: center;
 }
 
 .login-input input[type="text"] {
@@ -58,4 +59,8 @@ input {
 
 .delete-btn {
     background-color: #dc2626;
+}
+
+i.fa-sign-out{
+    cursor: pointer;
 }

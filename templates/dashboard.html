@@ -4,12 +4,16 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <script type="module" src="{% static 'js/dashboard.js' %}"></script>
+    <script type="module" src="{% static 'js/logout.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <form id="shorten-url">
         <div class="login-input">
             <input type="text" placeholder="Your long long url" name="url">
             <input type="date" id="expiry_date" name="expiry_date">
             <input type="submit" value="Shorten URL">
+
+            <i class="fa fa-sign-out" id="logout-btn"></i>
         </div>
     </form>
 
