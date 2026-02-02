@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <script type="module" src="{% static 'js/dashboard.js' %}"></script>
+
+    <form id="shorten-url">
+        <div class="login-input">
+            <input type="text" placeholder="Your long long url" name="url">
+            <input type="date" id="expiry_date" name="expiry_date">
+            <input type="submit" value="Shorten URL">
+        </div>
+    </form>
+
+    <div class="shorten-urls">
+    </div>
+{% endblock %}

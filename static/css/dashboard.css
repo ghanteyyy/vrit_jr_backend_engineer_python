@@ -1,0 +1,61 @@
+body {
+    display: grid;
+    place-items: center;
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px 20px 0 20px;
+    border-radius: 18px;
+}
+
+.login-input {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.login-input input[type="text"] {
+    width: 90%;
+}
+
+input {
+    padding: 14px;
+    border: 1px solid rgb(105, 105, 105);
+    border-radius: 18px;
+    outline: none;
+}
+
+.shorten-urls {
+    width: 50%;
+}
+
+.short-urls {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.short-url {
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.btn {
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    border-radius: 18px;
+}
+
+.view-btn {
+    background-color: blue;
+}
+
+.delete-btn {
+    background-color: #dc2626;
+}

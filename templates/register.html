@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h1>Register</h1>
+
+        <div class="login-input">
+            <input type="text" name="name" placeholder="Full name">
+            <p class="error"></p>
+        </div>
+
+        <div class="login-input">
+            <input type="text" name="email" placeholder="Email">
+            <p class="error"></p>
+        </div>
+
+        <div class="login-input">
+            <input type="date" name="date_of_birth" placeholder="Date of Birth">
+            <p class="error"></p>
+        </div>
+
+        <div class="login-input">
+            <input type="password" name="password" placeholder="Password">
+            <p class="error"></p>
+        </div>
+
+        <div class="login-input">
+            <input type="submit" name="password" value="Register">
+        </div>
+
+        <div class="login-input">
+            <p> Already have an account ?</p>
+            <a href="/login">Login</a>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/view.css' %}">
+
+    <div class="view-container">
+        <h1>Details</h1>
+        <div class="row">
+            <p>Email:</p>
+            <p>{{details.user_id}}</p>
+        </div>
+
+        <div class="row">
+            <p>Original URL</p>
+            <a href="{{details.original_url}}" target="_blank">{{details.original_url}}</a>
+            <div id="qrOriginalUrl"></div>
+        </div>
+
+        <div class="row">
+            <p>Shorten URL</p>
+            <a href="{{details.short_url}}" target="_blank">{{details.short_url}}</a>
+            <div id="qrShortUrl"></div>
+        </div>
+
+        <div class="row">
+            <p>Created at</p>
+            <p>{{details.created_at}}</p>
+        </div>
+
+        <div class="row">
+            <p>Expires at</p>
+            <p>{{details.expires_at}}</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+        <script>
+            const qrShortUrl = document.getElementById("qrShortUrl");
+            const qrShortUrlText = "{{ details.short_url|escapejs }}";
+
+            qrShortUrl.innerHTML = "";
+
+            new QRCode(qrShortUrl, {
+                text: qrShortUrlText,
+                width: 100,
+                height: 100
+            });
+
+
+            const qrOriginalUrl = document.getElementById("qrOriginalUrl");
+            const qrOriginalUrlText = "{{ details.original_url|escapejs }}";
+
+            qrOriginalUrl.innerHTML = "";
+
+            new QRCode(qrOriginalUrl, {
+                text: qrOriginalUrlText,
+                width: 100,
+                height: 100
+            });
+        </script>
+    </div>
+{% endblock %}
