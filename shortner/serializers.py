@@ -17,10 +17,12 @@ class ShortUrlSerializer(serializers.ModelSerializer):
     short_url = serializers.SerializerMethodField()
     original_url = serializers.SerializerMethodField()
     user_id = serializers.SerializerMethodField()
+    expires_at = serializers.DateTimeField(format="%Y-%m-%d %d %I:%M %p (UTC)", read_only=True)
+    created_at = serializers.DateTimeField(format="%Y-%m-%d %d %I:%M %p (UTC)", read_only=True)
 
     class Meta:
         model = models.ShortUrl
-        fields = ['user_id', 'original_url', 'short_url']
+        fields = ['user_id', 'original_url', 'short_url', 'short_key', 'expires_at', 'created_at']
 
     def get_user_id(self, obj):
         return obj.user_id.email
@@ -29,4 +31,4 @@ class ShortUrlSerializer(serializers.ModelSerializer):
         return obj.original_url_id.url
 
     def get_short_url(self, obj):
-        return f"{self.context.get('request').build_absolute_uri('/')}{obj.short_key}"
+        return f"{self.context.get('request').build_absolute_uri('/')}r/{obj.short_key}/"
