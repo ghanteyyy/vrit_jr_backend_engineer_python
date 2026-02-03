@@ -32,3 +32,8 @@ class ShortUrlSerializer(serializers.ModelSerializer):
 
     def get_short_url(self, obj):
         return f"{self.context.get('request').build_absolute_uri('/')}r/{obj.short_key}/"
+
+
+class ShortenUrlRequestSerializer(serializers.Serializer):
+    url = serializers.URLField()
+    expiry_date = serializers.DateField(required=False)

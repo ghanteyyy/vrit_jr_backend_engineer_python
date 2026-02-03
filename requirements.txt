@@ -1,6 +1,7 @@
 django
 psycopg2
 python-dotenv
+drf-spectacular
 django-ratelimit
 djangorestframework
 djangorestframework-simplejwt

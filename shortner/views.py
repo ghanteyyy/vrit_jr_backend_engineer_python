@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import redirect
 from rest_framework.decorators import APIView
+from drf_spectacular.utils import extend_schema, OpenApiResponse
 from . import models
 from . import serializers
 
@@ -34,6 +35,13 @@ class Shorten_URL(APIView):
             "details": serializers.ShortUrlSerializer(short_urls, many=True, context={"request": request}).data
         }, status=status.HTTP_200_OK)
 
+    @extend_schema(
+        summary="Short URL",
+        request=serializers.ShortenUrlRequestSerializer,
+        responses={
+            401: OpenApiResponse(description="Invalid details"),
+        },
+    )
     def post(self, request):
         self.get_valid_links(request)     # Removing expired links (if any). In future, use celery as background scheduler.
 

@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
-
+from drf_spectacular.utils import extend_schema, OpenApiResponse
 import accounts.models as account_models
 from . import serializers
 
@@ -20,6 +20,13 @@ def generate_tokens(user):
     }
 
 
+@extend_schema(
+    summary="Login",
+    request=serializers.LoginSerializer,
+    responses={
+        401: OpenApiResponse(description="Invalid email or password"),
+    },
+)
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def Login(request):
@@ -50,6 +57,13 @@ def Login(request):
     }, status=status.HTTP_404_NOT_FOUND)
 
 
+@extend_schema(
+    summary="Register",
+    request=serializers.RegisterSerializer,
+    responses={
+        401: OpenApiResponse(description="Invalid email or password"),
+    },
+)
 @api_view(['POST'])
 def Register(request):
     password_regex = r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,16}$'
