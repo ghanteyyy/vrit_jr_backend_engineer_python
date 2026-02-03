@@ -37,16 +37,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Configure environment variables
-
-Create a `.env` file in the project root:
-
-```
-DEBUG=True
-SECRET_KEY=your-secret-key
-ALLOWED_HOSTS=127.0.0.1,localhost
-```
-
 ### Run migrations
 ```
 python manage.py makemigrations
